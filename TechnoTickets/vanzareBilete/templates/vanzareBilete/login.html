@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Log In</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Instrument+Serif:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tagesschrift&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <script src="https://kit.fontawesome.com/c502826695.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <div class="form-section">
             <div class="title-container">
-                <h2>Create Account</h2>
+                <h2>Log In</h2>
             </div>
             <!-- <div class="social-container">
             </div> -->
@@ -24,33 +24,27 @@
                     {% csrf_token %}
                     <div class="input-group">
                         <span><i class="fa-solid fa-circle-user"></i></span>
-                        {{ form.nume }}
-                    </div>
-                    <div class="input-group">
-                        <span><i class="fa-solid fa-circle-user"></i></span>
-                        {{ form.prenume }}
-                    </div>
-                    <div class="input-group">
-                        <span><i class="fa-solid fa-envelope"></i></span>
-                        {{ form.email }}
+                        <input type="email" placeholder="Email" name="email">
                     </div>
                     <div class="input-group">
                         <span><i class="fa-solid fa-key"></i></span>
-                        {{ form.password1 }}
+                        <input type="password" placeholder="Password" name="password">
                     </div>
+                    {% for message in messages %}
+                        <p id="messages">{{message}}</p>
+                    {% endfor %}
                     <div class="input-group">
-                        <span><i class="fa-solid fa-key"></i></span>
-                        {{ form.password2 }}
+                        <a href="">Forgot your password?</a>
                     </div>
                     <div class="login-container">
-                        <input type="submit" value="Register Account">
+                        <input type="submit" value="Log In">
                     </div>
                 </form>
             </div>
         </div>
         <div class="message-section">
             <h3>Hello, Friend!</h3>
-            <p>Already have an account?</p><a href="{% url 'log_in' %}">Login</a>
+            <p>Enter your personal details and start journey with us</p><a href="{% url 'register' %}">Register</a>
         </div>
     </div>
 </body>

@@ -31,12 +31,11 @@ body{
     flex: 1.9;
     text-align: center;
     padding-top: 50px;
-
 }
 
 .title-container{
     font-size: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 90px;
 }
 
 .input-group {
@@ -88,21 +87,27 @@ body{
 
 span{
     font-size: 20px;
-    padding-top: 12px;
+    padding-top: 11px;
 }
 
 
 .login-container input{
     background-color: rgb(81, 119, 207);
-    padding: 14px 24px;
-    font-size:15px;
+    padding: 14px 30px;
+    font-size:19px;
     color: white;
     border: none;
     border-radius: 25px;
-    margin-top: 70px;
+    margin-top: 30px;
 }
 
 .input-group input:focus{
     outline: none;
     border-bottom: 2px solid black;
+}
+
+.form-container a{
+    margin-top: 90px;
+    text-decoration: none;
+    color: rgb(0, 0, 0,0.6);
 }

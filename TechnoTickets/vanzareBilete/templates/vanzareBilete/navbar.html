@@ -10,7 +10,17 @@
             <li><a href="#" class="out">Events</a></li>
             <li><a href="#"><img src="{% static 'media/logo.png' %}" alt="Techno Tickets Logo"></a></li>
             <li><a href="#" class="out">Contact Us</a></li>
-            <li><a href="#" class="out">Log In</a></li>
+            {% if request.user.is_authenticated %}
+                <style>
+                    ul li a{
+                        margin-left: 10px;
+                    }
+                </style>
+                <li><a href="{% url 'my_account' %}" class="out">My Account</a></li>
+            {% else %}
+                <li><a href="{% url 'log_in' %}" class="out">Log In</a></li>
+            {% endif %}
+
         </ul>
     </nav>
 </div>
@@ -21,7 +31,9 @@
             <li><a href="#" class="in">Home</a></li>
             <li><a href="#" class="in">Events</a></li>
             <li><a href="#" class="in">Contact Us</a></li>
-            <li><a href="#" class="in">Log In</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="#" class="in">My Account</a></li>
+            {% endif %}
         </ul>
     </nav>
 </div>
