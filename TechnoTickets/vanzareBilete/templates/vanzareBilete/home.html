@@ -1,5 +1,12 @@
 {% extends 'vanzareBilete/main.html' %}
+{% load static %}
 {% block content %}
+    <div class="video-container">
+        <video width="640" height="360" autoplay loop muted>
+            <source src="{% static 'media/Recording 2025-05-25 181938.mp4' %}" type="video/mp4">
+        </video>
+        <div class="overlay"><p>Come and party with us!</p></div>
+    </div>
     <div class="big-container">
         <div class="transitional-container">
             <div class="title-container">
