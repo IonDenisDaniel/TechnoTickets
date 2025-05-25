@@ -8,13 +8,26 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
 
-from .models import Event
+from .models import Event,Ticket
+
+from.functions import mostPopular
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'vanzareBilete/home.html')
+    lista_bilete = Ticket.objects.all()
+    lista_bilete_populare = mostPopular(lista_bilete)
+    lista = []
+    for k,v in lista_bilete_populare.items():
+        event = Event.objects.get(denumire = k)
+        lista.append(event)
+
+    context = {
+        'lista_evenimente_populare': lista[0:4]
+    }
+
+    return render(request, 'vanzareBilete/home.html', context)
 
 def events(request):
     lista_evenimente = Event.objects.all()
