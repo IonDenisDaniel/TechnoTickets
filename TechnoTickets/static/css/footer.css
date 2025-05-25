@@ -26,7 +26,7 @@ footer{
     display: flex;
     justify-content: center;
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 40px 0px auto ;
 }
 
 .author_reserved_container p{

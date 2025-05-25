@@ -6,8 +6,8 @@
             <i class="fa-solid fa-bars"></i>
         </label>
         <ul>
-            <li><a href="#" class="out">Home</a></li>
-            <li><a href="#" class="out">Events</a></li>
+            <li><a href="{% url 'home' %}" class="out">Home</a></li>
+            <li><a href="{% url 'events' %}" class="out">Events</a></li>
             <li><a href="#"><img src="{% static 'media/logo.png' %}" alt="Techno Tickets Logo"></a></li>
             <li><a href="#" class="out">Contact Us</a></li>
             {% if request.user.is_authenticated %}
@@ -32,7 +32,9 @@
             <li><a href="#" class="in">Events</a></li>
             <li><a href="#" class="in">Contact Us</a></li>
             {% if request.user.is_authenticated %}
-                <li><a href="#" class="in">My Account</a></li>
+                <li><a href="{% url 'my_account' %}" class="in">My Account</a></li>
+            {% else %}
+                <li><a href="{% url 'log_in' %}" class="in">Log In</a></li>
             {% endif %}
         </ul>
     </nav>

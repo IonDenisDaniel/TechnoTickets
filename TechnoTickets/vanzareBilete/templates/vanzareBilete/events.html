@@ -1,0 +1,24 @@
+{% extends 'vanzareBilete/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="big-container">
+        <div class="transitional-container">
+            <div class="title-container">
+                <p>Events</p>
+            </div>
+            <div class="container">
+                {% for eveniment in lista_evenimente %}
+                    <div class="card">
+                        <img src="{{eveniment.image.url}}" alt="Picnic Fonic Poster">
+                        <div class="event-description">
+                            <p class="card-title">{{eveniment.denumire}}</p>
+                            <p>{{eveniment.data}}</p>
+                            <p>{{eveniment.location}}  | {{eveneiment.ora_incepere}} - {{eveniment.ora_terminare}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

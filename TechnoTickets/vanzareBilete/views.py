@@ -5,18 +5,29 @@ from django.contrib import messages
 
 from django.contrib.auth import authenticate, login, logout
 
+from django.contrib.auth.decorators import login_required
+from .decorators import unauthenticated_user
+
+from .models import Event
+
 # Create your views here.
+
 
 def home(request):
     return render(request, 'vanzareBilete/home.html')
 
 def events(request):
-    return render(request, 'vanzareBilete/events.html')
+    lista_evenimente = Event.objects.all()
+
+    context = {
+        'lista_evenimente': lista_evenimente
+    }
+    return render(request, 'vanzareBilete/events.html', context)
 
 def contactUs(request):
     return render(request, 'vanzareBilete/contactUs.html')
 
-
+@unauthenticated_user
 def Register(request):
     form = CustomUserCreationForm()
     if request.method == 'POST':
@@ -30,7 +41,7 @@ def Register(request):
     }
     return render(request, 'vanzareBilete/register.html', context)
 
-
+@unauthenticated_user
 def LogIn(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -52,7 +63,7 @@ def LogOut(request):
     logout(request)
     return redirect('home')
 
-
+@login_required(login_url='log_in')
 def MyAccount(request):
     context = {}
     return render(request, 'vanzareBilete/myAccount.html', context)
