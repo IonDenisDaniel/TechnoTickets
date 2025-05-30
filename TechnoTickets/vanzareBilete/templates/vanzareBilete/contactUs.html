@@ -1,0 +1,34 @@
+{% extends 'vanzareBilete/main.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/contactUs.css' %}">
+    <div class="big2-container">
+        <div class="form-container">
+            <div class="title2-container">
+                <h2>Leave us a message</h2>
+                <p>We will respond as soon as possible.</p>
+            </div>
+            <form action="" method="post">
+                    <div class="details-container">
+                        <div class="input-group">
+                            <input type="text" name="name" placeholder="Full name...">
+                        </div>
+                        <div class="input-group">
+                            <input type="email" name="email" placeholder="Email...">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="subject" placeholder="Subject...">
+                        </div>
+                    </div>
+                    <div class="message-container">
+                        <textarea name="mesaj" placeholder="Mesagge..."></textarea>
+                    </div>
+                    <div class="button-container">
+                        <div class="input-group">
+                            <input type="submit" value="SEND MESSAGE">
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

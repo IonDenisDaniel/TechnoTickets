@@ -3,7 +3,7 @@
 {% block content %}
     <div class="video-container">
         <video width="640" height="360" autoplay loop muted>
-            <source src="{% static 'media/Recording 2025-05-25 181938.mp4' %}" type="video/mp4">
+            <source src="{% static 'media/coperta_home.mp4' %}" type="video/mp4">
         </video>
         <div class="overlay"><p>Come and party with us!</p></div>
     </div>
@@ -11,6 +11,24 @@
         <div class="transitional-container">
             <div class="title-container">
                 <p>Most Popular</p>
+            </div>
+            <div class="container">
+                {% for eveniment in lista_evenimente_populare %}
+                    <div class="card">
+                        <img src="{{eveniment.image.url}}" alt="Picnic Fonic Poster">
+                        <div class="event-description">
+                            <p class="card-title">{{eveniment.denumire}}</p>
+                            <p>{{eveniment.data}}</p>
+                            <p>{{eveniment.location}}  | {{eveneiment.ora_incepere}} - {{eveniment.ora_terminare}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="big-container">
+        <div class="transitional-container">
+            <div class="title-container">
+                <p>Most Recent</p>
             </div>
             <div class="container">
                 {% for eveniment in lista_evenimente_populare %}
