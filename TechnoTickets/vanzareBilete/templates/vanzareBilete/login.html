@@ -24,11 +24,11 @@
                     {% csrf_token %}
                     <div class="input-group">
                         <span><i class="fa-solid fa-circle-user"></i></span>
-                        <input type="email" placeholder="Email" name="email">
+                        <input type="email" placeholder="Email..." name="email">
                     </div>
                     <div class="input-group">
                         <span><i class="fa-solid fa-key"></i></span>
-                        <input type="password" placeholder="Password" name="password">
+                        <input type="password" placeholder="Password..." name="password">
                     </div>
                     {% for message in messages %}
                         <p id="messages">{{message}}</p>

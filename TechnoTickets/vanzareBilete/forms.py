@@ -19,6 +19,16 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ['nume', 'prenume', 'email', 'password1', 'password2']
+        widgets = {
+                'prenume':  forms.TextInput(attrs={'class': 'input', 'placeholder': 'Fisrt name...'}),
+                'nume': forms.TextInput(attrs={'class': 'input','placeholder': 'Last name...'}),
+                'email': forms.EmailInput(attrs={'class': 'input','placeholder': 'Email...'}),
+            }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs.update({'class': 'input', 'placeholder': 'Password...'})
+        self.fields['password2'].widget.attrs.update({'class': 'input', 'placeholder': 'Repeat password...'})
 
 class updateCustomUserFirstNameForm(forms.ModelForm):
     class Meta:

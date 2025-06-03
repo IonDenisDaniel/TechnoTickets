@@ -14,15 +14,25 @@
     justify-content: space-between;
 }
 
-.photo-section h1{
-    font-size: 100px;
-    padding-top: 15px;
+.photo-section img{
+    width: 300px;
+    height: 300px;
+    display: block;
+}
+
+.photo-section p{
+    background-color: rgb(93, 140, 249, 0.7);
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 80px;
+    padding: 15px 25px;
+    margin-top: 70px;
 }
 
 .events-section{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 40px;
+    gap: 60px;
     padding-left: 80px;
     padding-right: 80px;
 }
@@ -30,7 +40,7 @@
     font-size: 26px;
     font-weight: 500;
     padding-left: 70px;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 20px;
     text-decoration: underline;
     text-underline-offset: 7px;
@@ -94,4 +104,16 @@
     font-size: 22px;
     padding: 15px 25px;
     border-radius: 20px;
+}
+
+@media(max-width: 1100px){
+    .events-section{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width: 700px){
+    .events-section{
+        grid-template-columns: repeat(1,1fr);
+    }
 }

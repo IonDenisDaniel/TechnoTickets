@@ -26,8 +26,11 @@ def home(request):
         event = Event.objects.get(denumire = k)
         lista.append(event)
 
+    lista_evenimente_recente = Event.objects.order_by('data')
+
     context = {
-        'lista_evenimente_populare': lista[0:4]
+        'lista_evenimente_populare': lista[0:4],
+        'lista_evenimente_recente': lista_evenimente_recente[0:4]
     }
 
     return render(request, 'vanzareBilete/home.html', context)
@@ -96,10 +99,14 @@ def LogOut(request):
 
 @login_required(login_url='log_in')
 def MyAccount(request):
-    lista_evenimente = Event.objects.all()
+    user = request.user
+    lista_bilete = Ticket.objects.filter(owner = user)
+    lista_evenimente = []
+    for bilet in lista_bilete:
+        lista_evenimente.append(bilet.event)
 
     context = {
-        'lista_evenimente': lista_evenimente[0:3]
+        'lista_evenimente': lista_evenimente
     }
     return render(request, 'vanzareBilete/myAccount.html', context)
 

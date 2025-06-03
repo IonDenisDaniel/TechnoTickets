@@ -52,10 +52,12 @@ body{
     height: 45px;
     font-size: 18px;
     border-bottom: 2px solid rgb(0, 0, 0,0.2);
+    padding-top: 15px;
 }
 
 .input-group i{
     color: rgb(0, 0, 0,0.6);
+    padding-top: 8px;
 }
 
 

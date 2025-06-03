@@ -8,6 +8,7 @@
     padding: 60px;
     border: none;
     box-shadow: 20px 20px 30px #5557;
+    border-radius: 30px;
 }
 
 .details-container{

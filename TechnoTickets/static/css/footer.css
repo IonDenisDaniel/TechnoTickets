@@ -41,3 +41,7 @@ footer{
 .author_reserved_container p{
     margin-left: 5px;
 }
+
+a i{
+    color: black;
+}
