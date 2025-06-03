@@ -1,0 +1,10 @@
+{% extends 'vanzareBilete/main.html' %}
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.profile_image }}
+        <p>Are you sure you want to change your profile picture?</p>
+        <input type="submit" value="Yes">
+        <a href="{% url 'my_account' %}">Cancel</a>
+    </form>
+{% endblock %}

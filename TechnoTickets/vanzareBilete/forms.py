@@ -45,6 +45,11 @@ class updateCustomUserEmailForm(forms.ModelForm):
         model = CustomUser
         fields = ['email']
 
+class updateCustomUserProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['profile_image']
+
 
 
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
-from .forms import UserFormCreation, CustomUserCreationForm, updateCustomUserFirstNameForm, updateCustomUserLastNameForm, updateCustomUserEmailForm
+from .forms import UserFormCreation, CustomUserCreationForm, updateCustomUserFirstNameForm, updateCustomUserLastNameForm, updateCustomUserEmailForm, updateCustomUserProfilePictureForm
 from django.contrib import messages
 
 from django.contrib.auth import authenticate, login, logout
@@ -166,3 +166,18 @@ def updateUserPassword(request):
         'form': form
     }
     return render(request, 'vanzareBilete/updateUserPasswordForm.html', context)
+
+
+def updateUserProfilePicture(request):
+    user = request.user
+    form = updateCustomUserProfilePictureForm(instance=user)
+    if request.method == 'POST':
+        form = updateCustomUserProfilePictureForm(request.POST, request.FILES, instance=user)
+        if form.save():
+            form.save()
+            return redirect('my_account')
+        
+    context = {
+        'form': form
+    }
+    return render(request, 'vanzareBilete/updateUserProfilePictureForm.html', context)

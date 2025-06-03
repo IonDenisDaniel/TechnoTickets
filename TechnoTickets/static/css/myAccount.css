@@ -15,9 +15,11 @@
 }
 
 .photo-section img{
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     display: block;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .photo-section p{
@@ -26,7 +28,7 @@
     text-decoration: none;
     font-size: 80px;
     padding: 15px 25px;
-    margin-top: 70px;
+    margin-top: 140px;
 }
 
 .events-section{

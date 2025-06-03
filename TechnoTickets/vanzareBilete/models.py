@@ -28,6 +28,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     nume = models.CharField(max_length=200)
     prenume = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
+    profile_image = models.ImageField(null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
