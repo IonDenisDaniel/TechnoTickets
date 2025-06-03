@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'TechnoTickets.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'TechnoTicketsDatabase',
+        'USER': 'postgres',
+        'PASSWORD': 'capdemelc',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
@@ -133,5 +137,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'vanzareBilete.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
-    'vanzareBilete.backend.EmailBackend'
+    'vanzareBilete.backend.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
+
+
+
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'DENIS_NOLIMITS@yahoo.com'  
+EMAIL_HOST_PASSWORD = 'mvvkyzkihrosfvnk'     
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

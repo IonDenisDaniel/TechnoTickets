@@ -9,15 +9,16 @@
                 <p>We will respond as soon as possible.</p>
             </div>
             <form action="" method="post">
+                {% csrf_token %}
                     <div class="details-container">
                         <div class="input-group">
-                            <input type="text" name="name" placeholder="Full name...">
+                            <input type="text" name="nume" placeholder="Full name...">
                         </div>
                         <div class="input-group">
                             <input type="email" name="email" placeholder="Email...">
                         </div>
                         <div class="input-group">
-                            <input type="text" name="subject" placeholder="Subject...">
+                            <input type="text" name="subiect" placeholder="Subject...">
                         </div>
                     </div>
                     <div class="message-container">

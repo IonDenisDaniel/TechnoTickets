@@ -19,3 +19,22 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ['nume', 'prenume', 'email', 'password1', 'password2']
+
+class updateCustomUserFirstNameForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['prenume']
+
+class updateCustomUserLastNameForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['nume']
+
+class updateCustomUserEmailForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['email']
+
+
+
+

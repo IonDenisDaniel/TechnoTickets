@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from .forms import UserFormCreation, CustomUserCreationForm
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
+from .forms import UserFormCreation, CustomUserCreationForm, updateCustomUserFirstNameForm, updateCustomUserLastNameForm, updateCustomUserEmailForm
 from django.contrib import messages
 
 from django.contrib.auth import authenticate, login, logout
@@ -11,6 +11,9 @@ from .decorators import unauthenticated_user
 from .models import Event,Ticket
 
 from.functions import mostPopular
+
+#pentru mail
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -38,6 +41,21 @@ def events(request):
     return render(request, 'vanzareBilete/events.html', context)
 
 def contactUs(request):
+    if request.method == 'POST':
+        nume = request.POST.get('nume')
+        email = request.user.email
+        subiect = request.POST.get('subiect')
+        mesaj = request.POST.get('mesaj')
+        mesaj = f"{request.user.nume} {request.user.prenume} \n {subiect} \n {mesaj}"
+
+        send_mail(
+            subject = subiect,
+            message = mesaj,
+            from_email = email,
+            recipient_list = ['DENIS_NOLIMITS@yahoo.com']
+        )
+
+        return redirect('/')
     return render(request, 'vanzareBilete/contactUs.html')
 
 @unauthenticated_user
@@ -78,5 +96,66 @@ def LogOut(request):
 
 @login_required(login_url='log_in')
 def MyAccount(request):
-    context = {}
+    lista_evenimente = Event.objects.all()
+
+    context = {
+        'lista_evenimente': lista_evenimente[0:3]
+    }
     return render(request, 'vanzareBilete/myAccount.html', context)
+
+
+def updateUserFirstName(request):
+    user = request.user
+    form = updateCustomUserFirstNameForm(instance=user)
+    if request.method == 'POST':
+        form = updateCustomUserFirstNameForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('my_account')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'vanzareBilete/updateUserFirstNameForm.html', context)
+
+def updateUserLastName(request):
+    user = request.user
+    form = updateCustomUserLastNameForm(instance=user)
+    if request.method == 'POST':
+        form = updateCustomUserLastNameForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('my_account')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'vanzareBilete/updateUserLastNameForm.html', context)
+
+def updateUserEmail(request):
+    user = request.user
+    form = updateCustomUserEmailForm(instance=user)
+    if request.method == 'POST':
+        form = updateCustomUserEmailForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('my_account')
+        
+    context = {
+        'form': form
+    }
+    return render(request, 'vanzareBilete/updateUserEmailForm.html', context)
+
+def updateUserPassword(request):
+    user = request.user
+    form = SetPasswordForm(user)
+    if request.method == 'POST':
+        form = SetPasswordForm(user, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('my_account')
+        
+    context = {
+        'form': form
+    }
+    return render(request, 'vanzareBilete/updateUserPasswordForm.html', context)

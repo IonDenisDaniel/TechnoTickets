@@ -1,0 +1,97 @@
+.profile-center-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container{
+    max-width: 1200px;
+}
+
+.photo-section{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.photo-section h1{
+    font-size: 100px;
+    padding-top: 15px;
+}
+
+.events-section{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+.events-section-title{
+    font-size: 26px;
+    font-weight: 500;
+    padding-left: 70px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    text-underline-offset: 7px;
+}
+
+.details-section{
+    padding: 0px 30px;
+}
+
+.details-section .title{
+    width: 100px;
+    margin-top: 140px;
+    margin-bottom: 20px;
+}
+
+.details-section .title p{
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px 15px;
+}
+
+.details-section .tabel{
+    margin-left: 30px;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+}
+
+.details-section .tabel .details-group{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 20px 15px;
+}
+
+
+.details-section .tabel  .details-group p{
+    font-size: 20px;
+}
+
+.details-section .tabel  .details-group:first-child{
+    border-radius: 20px 20px 0px 0px;
+}
+
+.details-section .tabel  .details-group:last-child{
+    border-radius: 0px 0px 20px 20px;
+    border-bottom: 1px solid black;
+}
+
+.details-section .button-logout{
+    margin-top: 40px;
+    display: flex;
+    justify-content: end;
+}
+
+.details-section .button-logout a{
+    text-decoration: none;
+    background-color: rgb(190, 56, 56);
+    color: white;
+    font-size: 22px;
+    padding: 15px 25px;
+    border-radius: 20px;
+}

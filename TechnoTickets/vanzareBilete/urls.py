@@ -8,5 +8,9 @@ urlpatterns = [
     path('register/', views.Register, name = 'register'),
     path('login/', views.LogIn, name = 'log_in'),
     path('logout/', views.LogOut, name = 'log_out'),
-    path('myAccount/', views.MyAccount, name = 'my_account')
+    path('myAccount/', views.MyAccount, name = 'my_account'),
+    path('updateUserFirstName/', views.updateUserFirstName, name = 'update_user_first_name'),
+    path('updateUserLastName/', views.updateUserLastName, name = 'update_user_last_name'),
+    path('updateUserEmail/', views.updateUserEmail, name = 'update_user_email'),
+    path('udateUserPassword/', views.updateUserPassword, name = 'update_user_password')
 ]

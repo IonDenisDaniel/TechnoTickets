@@ -1,4 +1,60 @@
 {% extends 'vanzareBilete/main.html' %}
+{% load static %}
 {% block content %}
-    <a href="{% url 'log_out' %}">Log Out</a>
+    <div class="profile-center-container">
+        <div class="profile-container">
+            <div class="info-section">
+                <div class="photo-section">
+                    <div class="myAccount-title-container">
+                        <h1>Hi, {{ request.user.prenume }}</h1>
+                    </div>
+                    <div class="photo-container">
+                        <img src="{% static 'media/logo.png' %}" alt="Profile picture">
+                    </div>
+                </div>
+                <div class="events-section-title">
+                    <p>Your tickets</p>
+                </div>
+                <div class="events-section">
+                    {% for eveniment in lista_evenimente %}
+                        <div class="card">
+                            <img src="{{eveniment.image.url}}" alt="Picnic Fonic Poster">
+                            <div class="event-description">
+                                <p class="card-title">{{eveniment.denumire}}</p>
+                                <p>{{eveniment.data}}</p>
+                                <p>{{eveniment.location}}  | {{eveniment.ora_incepere}} - {{eveniment.ora_terminare}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="details-section">
+                <div class="title">
+                    <p>Details</p>
+                </div>
+                <div class="tabel">
+                    <div class="details-group">
+                        <p>First name: {{ request.user.prenume }}</p>
+                        <a href="{% url 'update_user_first_name' %}">Change</a>
+                    </div>
+                    <div class="details-group">
+                        <p>Last name: {{ request.user.nume }}</p>
+                        <a href="{% url 'update_user_last_name' %}">Change</a>
+                    </div>
+                    <div class="details-group">
+                        <p>Email: {{ request.user.email }}</p>
+                        <a href="{% url 'update_user_email' %}">Change</a>
+                    </div>
+                    <div class="details-group">
+                        <p>Password</p>
+                        <a href="{% url 'update_user_password' %}">Change</a>
+                    </div>
+                </div>
+                <div class="button-logout">
+                    <a href="{% url 'log_out' %}">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock%}

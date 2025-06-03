@@ -1,0 +1,10 @@
+{% extends 'vanzareBilete/main.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.prenume }}
+        <p>Are you sure you want to change first name?</p>
+        <input type="submit" value="Yes">
+        <a href="{% url 'my_account' %}">Cancel</a>
+    </form>
+{% endblock %}
