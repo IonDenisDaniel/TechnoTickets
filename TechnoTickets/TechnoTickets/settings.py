@@ -141,7 +141,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR,  'static/media/')
+MEDIA_ROOT = os.path.join(BASE_DIR,  'static/media')
 
 
 

@@ -1,7 +1,6 @@
 .big2-container{
     max-width: 1300px;
     margin: 50px auto ;
-    margin-bottom: 0px;
 }
 
 .form-container{
@@ -48,14 +47,15 @@
 
 .title2-container h2{
     font-family: 'Instrument Serif';
-    background-color: rgb(93, 140, 249, 0.7);
+    background-color: rgb(93, 140, 249, 0.9);
     color: white;
     font-size: 30px;
     margin-bottom: 10px;
     letter-spacing: 1.3px;
     font-weight: bold;
     text-decoration: none;
-    padding:5px 10px;
+    padding:5px 15px;
+    border-radius: 10px;
 }
 
 .title2-container p{
@@ -77,4 +77,5 @@
     border: none;
     padding: 20px;
     font-weight: bold;
+    border-radius: 10px;
 }

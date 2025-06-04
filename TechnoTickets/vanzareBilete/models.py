@@ -50,16 +50,24 @@ class Event(models.Model):
     ora_terminare = models.TimeField()
     descriere = models.CharField(max_length=500)
     image = models.ImageField(upload_to='event_images/', blank=True)
+    latitudine = models.FloatField(null=True)
+    longitudine = models.FloatField(null=True)
 
     def __str__(self):
         return self.denumire
     
 class Ticket(models.Model):
+    CATEGORY = (
+        ('Earlybird', 'Earlybird'),
+        ('General entry', 'General entry'),
+        ('VIP', 'VIP')
+    )
     id = models.UUIDField(primary_key=True, default = uuid.uuid4, editable=False)
     event = models.ForeignKey('Event', on_delete=models.CASCADE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     purchase_date = models.DateField(auto_now_add=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    category = models.CharField(max_length=200, null = True, choices=CATEGORY)
 
     def __str__(self):
         return f"Bilet: {self.id} pentru eveniment: {self.event} - owner: {self.owner}"

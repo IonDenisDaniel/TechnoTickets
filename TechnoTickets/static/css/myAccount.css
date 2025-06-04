@@ -10,25 +10,28 @@
 
 .photo-section{
     padding-top: 30px;
+    padding-bottom: 30px;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid rgb(0, 0, 0,0.3);
 }
 
 .photo-section img{
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     display: block;
     object-fit: cover;
     border-radius: 50%;
 }
 
 .photo-section p{
-    background-color: rgb(93, 140, 249, 0.7);
-    border-radius: 20px;
     text-decoration: none;
     font-size: 80px;
     padding: 15px 25px;
-    margin-top: 140px;
+    margin-top: 70px;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    border-radius: 20px;
 }
 
 .events-section{
@@ -39,13 +42,15 @@
     padding-right: 80px;
 }
 .events-section-title{
+    display: inline-block;
     font-size: 26px;
+    padding: 10px 15px;
     font-weight: 500;
-    padding-left: 70px;
     margin-top: 50px;
     margin-bottom: 20px;
-    text-decoration: underline;
-    text-underline-offset: 7px;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 20px;
 }
 
 .details-section{

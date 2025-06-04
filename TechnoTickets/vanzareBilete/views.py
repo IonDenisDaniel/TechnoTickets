@@ -181,3 +181,63 @@ def updateUserProfilePicture(request):
         'form': form
     }
     return render(request, 'vanzareBilete/updateUserProfilePictureForm.html', context)
+
+
+def EventPage(request):
+    event = Event.objects.get(denumire = 'NOART 2028')
+    user = request.user
+
+    if request.method == 'POST':
+
+        try:
+            earlybird_cat = int(request.POST.get('earlybird_number', 0))
+        except ValueError:
+            earlybird_cat = 0
+
+        try:   
+            general_entry_cat = int(request.POST.get('general_entry_number', 0))
+        except ValueError:
+            general_entry_cat = 0
+            
+
+        try:
+            vip_cat = int(request.POST.get('vip_number', 0))
+        except ValueError:
+            vip_cat = 0
+
+
+        if earlybird_cat < 0 or general_entry_cat < 0 or vip_cat < 0:
+            messages.error(request, "Va rugam sa introduceti un numar de bilete pozitiv.")
+            return render(request, 'vanzareBilete/event.html', context = {'eventVariable': event})
+
+        if earlybird_cat > 0:
+            for i in range(earlybird_cat):
+                ticket = Ticket.objects.create(
+                    event = event,
+                    owner = user,
+                    price = 100,
+                    category = 'Earlybird'
+                )
+
+        if general_entry_cat > 0:
+            for i in range(general_entry_cat):
+                ticket = Ticket.objects.create(
+                    event = event,
+                    owner = user,
+                    price = 140,
+                    category = 'General entry'
+                )
+
+        if vip_cat > 0:
+            for i in range(vip_cat):
+                ticket = Ticket.objects.create(
+                    event = event,
+                    owner = user,
+                    price = 270,
+                    category = 'VIP'
+                )
+
+    context = {
+        'eventVariable': event
+    }
+    return render(request, 'vanzareBilete/event.html', context)

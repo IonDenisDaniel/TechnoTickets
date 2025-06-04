@@ -1,0 +1,139 @@
+{% extends 'vanzareBilete/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="carusel-container">
+        <div class="poster-container">
+            <img src="{% static 'media/posterEvent.png' %}" alt="">
+        </div>
+        <div class="poster-container">
+            <img src="{% static 'media/posterEvent2.png' %}" alt="">
+        </div>
+        <div class="poster-container">
+            <img src="{% static 'media/posterEvent3.png' %}" alt="">
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="event-title-section">
+            <div class="poster-card-container">
+                <img src="{% static 'media/event_images/Screenshot_2025-02-22_164058_SdTgapG.png' %}" alt="">
+                <div class="details-group">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <p>SATURDAY 9 august,2025</p>
+                </div>
+                <div class="details-group">
+                    <i class="fa-solid fa-map"></i>
+                    <a href="">ROMAERO,Bucharest</a>
+                </div>
+            </div>
+            <div class="title3-card">
+                <div class="title3-card-container">
+                    <div class="title3-container">
+                        <p>PICNIC FONIC</p>
+                    </div>
+                    <div class="social-container">
+                        <div class="social-group">
+                            <i class="fa-brands fa-instagram"></i>
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about-section">
+            <h2>About</h2>
+            <p class="indent">    Sound technology finds its home at Picnic Fonic, in the industrial ROMAERO complex, where five internationally acclaimed headline DJs will deliver an unforgettable set. Leave your worries behind and get ready for a marathon of deep bass, driving kicks, and hypnotic synths.
+                    Tickets sell fast—don't miss your chance to be part of this unique electronic experience!</p>
+            <p>9th OF AUGUST 2025</p>
+            <p>7pm - 6am (Last Entry 3am)</p>
+        </div>
+        <div class="tickets-section">
+            <h2>Tickets</h2>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="tickets-group">
+                    <p>Earlybird</p>
+                    <div class="details-group">
+                        <div class="details-group-info">
+                            <p>Pre 12am General Entry Ticket</p>
+                            <p class="small">18+ ID Required - You must arrive before 12am to make sure your ticket is valid</p>
+                        </div>
+                        <div class="details-group-price">
+                            <p>100 Ron</p>
+                        </div>
+                        <div class="details-group-input">
+                            <input type="number" name="earlybird_number" value="0" style="padding-left: 15px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="tickets-group">
+                    <p>General Entry</p>
+                    <div class="details-group">
+                        <div class="details-group-info">
+                            <p>General Entry Ticket</p>
+                            <p class="small">18+ ID Required - Last entry 3am</p>
+                        </div>
+                        <div class="details-group-price">
+                            <p>140 Ron</p>
+                        </div>
+                        <div class="details-group-input">
+                            <input type="number" name="general_entry_number" value="0" style="padding-left: 15px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="tickets-group">
+                    <p>VIP</p>
+                    <div class="details-group">
+                        <div class="details-group-info">
+                            <p>VIP Stage Access Ticket - Age 21+</p>
+                            <p class="small">21+ Access to stage, VIP village including own bars, toilets, food and chill out area</p>
+                        </div>
+                        <div class="details-group-price">
+                            <p>270 Ron</p>
+                        </div>
+                        <div class="details-group-input">
+                            <input type="number" name="vip_number" value="0" style="padding-left: 15px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="tickets-group-total">
+                    <div class="details-group-total">
+                        <div class="details-group-info-total">
+                            <p>Total</p>
+                        </div>
+                        <div class="details-group-price-total">
+                            <p>510 Ron</p>
+                        </div>
+                        <div class="details-group-total-submit">
+                            <input type="submit" value="Cumpara">
+                        </div>
+                    </div>
+                </div>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </form>
+        </div>
+        <div class="location-section">
+            <p id="lan">{{eventVariable.latitudine}}</p>
+            <p id="lon">{{eventVariable.longitudine}}</p>
+            <h2>Picnic Fonic Location</h2>
+            <div id="map"></div>
+        </div>
+    </div>
+
+<script >
+    let lat = parseFloat(document.getElementById('lan').textContent);
+    let lon = parseFloat(document.getElementById('lon').textContent);
+
+
+    var map = L.map('map').setView([lat, lon], 15);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    L.marker([lat,lon]).addTo(map);
+</script>
+{% endblock %}
