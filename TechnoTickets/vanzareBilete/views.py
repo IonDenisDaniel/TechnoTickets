@@ -183,8 +183,8 @@ def updateUserProfilePicture(request):
     return render(request, 'vanzareBilete/updateUserProfilePictureForm.html', context)
 
 
-def EventPage(request):
-    event = Event.objects.get(denumire = 'NOART 2028')
+def EventPage(request, primary_key):
+    event = Event.objects.get(id = primary_key)
     user = request.user
 
     if request.method == 'POST':

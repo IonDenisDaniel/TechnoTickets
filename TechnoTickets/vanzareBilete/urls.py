@@ -14,5 +14,5 @@ urlpatterns = [
     path('updateUserEmail/', views.updateUserEmail, name = 'update_user_email'),
     path('udateUserPassword/', views.updateUserPassword, name = 'update_user_password'),
     path('updateUserProfilePicture/', views.updateUserProfilePicture, name = 'update_user_profile_picture'),
-    path('eventPage/', views.EventPage, name = 'event_page')
+    path('eventPage/<str:primary_key>/', views.EventPage, name = 'event_page')
 ]

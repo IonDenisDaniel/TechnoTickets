@@ -14,7 +14,7 @@
             </div>
             <div class="container">
                 {% for eveniment in lista_evenimente_populare %}
-                    <a href="{% url 'event_page' %}">
+                    <a href="{% url 'event_page' eveniment.id %}">
                         <div class="card">
                             <img src="{{eveniment.image.url}}" alt="Picnic Fonic Poster">
                             <div class="event-description">

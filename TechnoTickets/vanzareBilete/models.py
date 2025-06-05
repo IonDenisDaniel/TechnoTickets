@@ -50,8 +50,10 @@ class Event(models.Model):
     ora_terminare = models.TimeField()
     descriere = models.CharField(max_length=500)
     image = models.ImageField(upload_to='event_images/', blank=True)
+    colorTheme = models.CharField(max_length=100, null=True, blank=True)
     latitudine = models.FloatField(null=True)
     longitudine = models.FloatField(null=True)
+
 
     def __str__(self):
         return self.denumire

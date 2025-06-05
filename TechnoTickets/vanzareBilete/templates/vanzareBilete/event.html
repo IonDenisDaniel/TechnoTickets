@@ -15,20 +15,20 @@
     <div class="content-container">
         <div class="event-title-section">
             <div class="poster-card-container">
-                <img src="{% static 'media/event_images/Screenshot_2025-02-22_164058_SdTgapG.png' %}" alt="">
+                <img src="{{ eventVariable.image.url }}" alt="">
                 <div class="details-group">
                     <i class="fa-solid fa-calendar-days"></i>
-                    <p>SATURDAY 9 august,2025</p>
+                    <p>{{eventVariable.data}}</p>
                 </div>
                 <div class="details-group">
                     <i class="fa-solid fa-map"></i>
-                    <a href="">ROMAERO,Bucharest</a>
+                    <a href="">{{eventVariable.location}}</a>
                 </div>
             </div>
             <div class="title3-card">
                 <div class="title3-card-container">
                     <div class="title3-container">
-                        <p>PICNIC FONIC</p>
+                        <p>{{eventVariable.denumire}}</p>
                     </div>
                     <div class="social-container">
                         <div class="social-group">
@@ -41,14 +41,13 @@
             </div>
         </div>
         <div class="about-section">
-            <h2>About</h2>
-            <p class="indent">    Sound technology finds its home at Picnic Fonic, in the industrial ROMAERO complex, where five internationally acclaimed headline DJs will deliver an unforgettable set. Leave your worries behind and get ready for a marathon of deep bass, driving kicks, and hypnotic synths.
-                    Tickets sell fast—don't miss your chance to be part of this unique electronic experience!</p>
-            <p>9th OF AUGUST 2025</p>
-            <p>7pm - 6am (Last Entry 3am)</p>
+            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% else %} default-theme {% endif %}">About</h2>
+            <p class="indent">{{eventVariable.descriere}}</p>
+            <p>{{eventVariable.data.day}}th OF {{eventVariable.data | date:"F"}}, {{eventVariable.data.year}}</p>
+            <p>{{eventVariable.ora_incepere}} - {{eventVariable.ora_terminare}} (Last Entry 3am)</p>
         </div>
         <div class="tickets-section">
-            <h2>Tickets</h2>
+            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% else %} default-theme {% endif %}">Tickets</h2>
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="tickets-group">
@@ -117,7 +116,7 @@
         <div class="location-section">
             <p id="lan">{{eventVariable.latitudine}}</p>
             <p id="lon">{{eventVariable.longitudine}}</p>
-            <h2>Picnic Fonic Location</h2>
+            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% else %} default-theme {% endif %}">{{eventVariable.denumire}} Location</h2>
             <div id="map"></div>
         </div>
     </div>
