@@ -8,15 +8,17 @@
             </div>
             <div class="container">
                 {% for eveniment in lista_evenimente %}
-                    <div class="card">
-                        <img src="{{eveniment.image.url}}" alt="Picnic Fonic Poster">
-                        <div class="event-description">
-                            <p class="card-title">{{eveniment.denumire}}</p>
-                            <p>{{eveniment.data}}</p>
-                            <p>{{eveniment.location}}</p>
-                            <p>{{eveniment.ora_incepere}} - {{eveniment.ora_terminare}}</p>
+                    <a href="{% url 'event_page' eveniment.id %}">
+                        <div class="card">
+                            <img src="{{eveniment.image.url}}" alt="Picnic Fonic Poster">
+                            <div class="event-description">
+                                <p class="card-title">{{eveniment.denumire}}</p>
+                                <p>{{eveniment.data}}</p>
+                                <p>{{eveniment.location}}</p>
+                                <p>{{eveniment.ora_incepere}} - {{eveniment.ora_terminare}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 {% endfor %}
                 
             </div>

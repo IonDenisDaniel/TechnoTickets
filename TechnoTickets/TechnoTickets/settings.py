@@ -11,10 +11,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from environ import Env
+
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+BASE_URL = 'http://127.0.0.1:8000/'
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'vanzareBilete'
+    'vanzareBilete',
+    'procesatorPlati_STRIPE'
 ]
 
 MIDDLEWARE = [
@@ -153,3 +158,11 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'DENIS_NOLIMITS@yahoo.com'  
 EMAIL_HOST_PASSWORD = 'mvvkyzkihrosfvnk'     
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+#VARIABILE DE MEDIU
+
+env = Env()
+env.read_env(BASE_DIR/'.env')
+
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY_TEST', default='secret_key')

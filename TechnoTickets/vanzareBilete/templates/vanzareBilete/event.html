@@ -41,57 +41,60 @@
             </div>
         </div>
         <div class="about-section">
-            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% else %} default-theme {% endif %}">About</h2>
+            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% elif eventVariable.colorTheme == 'blue' %} blue-theme {% elif eventVariable.colorTheme == 'purple' %} purple-theme {% else %} default-theme {% endif %}">About</h2>
             <p class="indent">{{eventVariable.descriere}}</p>
             <p>{{eventVariable.data.day}}th OF {{eventVariable.data | date:"F"}}, {{eventVariable.data.year}}</p>
             <p>{{eventVariable.ora_incepere}} - {{eventVariable.ora_terminare}} (Last Entry 3am)</p>
         </div>
         <div class="tickets-section">
-            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% else %} default-theme {% endif %}">Tickets</h2>
+            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% elif eventVariable.colorTheme == 'blue' %} blue-theme {% elif eventVariable.colorTheme == 'purple' %} purple-theme {% else %} default-theme {% endif %}">Tickets</h2>
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="tickets-group">
-                    <p>Earlybird</p>
+                    <p>{{ EarlyBird_product.name }}</p>
                     <div class="details-group">
                         <div class="details-group-info">
                             <p>Pre 12am General Entry Ticket</p>
                             <p class="small">18+ ID Required - You must arrive before 12am to make sure your ticket is valid</p>
+                            <input type="hidden" name="EarlyBird_price_id" value="{{ EarlyBird_price.id }}">
                         </div>
                         <div class="details-group-price">
-                            <p>100 Ron</p>
+                            <p>{{ EarlyBird_price_final }}</p>
                         </div>
                         <div class="details-group-input">
-                            <input type="number" name="earlybird_number" value="0" style="padding-left: 15px;">
+                            <input type="number" name="EarlyBird_quantity" value="0" style="padding-left: 15px;">
                         </div>
                     </div>
                 </div>
                 <div class="tickets-group">
-                    <p>General Entry</p>
+                    <p>{{ GeneralEntry_product.name }}</p>
                     <div class="details-group">
                         <div class="details-group-info">
-                            <p>General Entry Ticket</p>
-                            <p class="small">18+ ID Required - Last entry 3am</p>
+                            <p>{{ GeneralEntry_product.description }}</p>
+                            <p class="small">18+ ID Required - You must arrive before 3am to make sure your ticket is valid</p>
+                            <input type="hidden" name="GeneralEntry_price_id" value="{{ GeneralEntry_price.id }}">
                         </div>
                         <div class="details-group-price">
-                            <p>140 Ron</p>
+                            <p>{{ GeneralEntry_price_final }}</p>
                         </div>
                         <div class="details-group-input">
-                            <input type="number" name="general_entry_number" value="0" style="padding-left: 15px;">
+                            <input type="number" name="GeneralEntry_quantity" value="0" style="padding-left: 15px;">
                         </div>
                     </div>
                 </div>
                 <div class="tickets-group">
-                    <p>VIP</p>
+                    <p>{{ VIP_product.name }}</p>
                     <div class="details-group">
                         <div class="details-group-info">
-                            <p>VIP Stage Access Ticket - Age 21+</p>
+                            <p>{{ VIP_product.description}}</p>
                             <p class="small">21+ Access to stage, VIP village including own bars, toilets, food and chill out area</p>
+                            <input type="hidden" name="VIP_price_id" value="{{ VIP_price.id }}">
                         </div>
                         <div class="details-group-price">
-                            <p>270 Ron</p>
+                            <p>{{ VIP_price_final}}</p>
                         </div>
                         <div class="details-group-input">
-                            <input type="number" name="vip_number" value="0" style="padding-left: 15px;">
+                            <input type="number" name="VIP_quantity" value="0" style="padding-left: 15px;">
                         </div>
                     </div>
                 </div>
@@ -116,7 +119,7 @@
         <div class="location-section">
             <p id="lan">{{eventVariable.latitudine}}</p>
             <p id="lon">{{eventVariable.longitudine}}</p>
-            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% else %} default-theme {% endif %}">{{eventVariable.denumire}} Location</h2>
+            <h2 class="{% if eventVariable.colorTheme == 'yellow' %} theme-yellow {% elif eventVariable.colorTheme == 'red' %} red-theme {% elif eventVariable.colorTheme == 'blue' %} blue-theme {% elif eventVariable.colorTheme == 'purple' %} purple-theme {% else %} default-theme {% endif %}">{{eventVariable.denumire}} Location</h2>
             <div id="map"></div>
         </div>
     </div>

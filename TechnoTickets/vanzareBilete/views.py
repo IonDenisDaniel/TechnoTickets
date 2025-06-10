@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
+import stripe.error
 from .forms import UserFormCreation, CustomUserCreationForm, updateCustomUserFirstNameForm, updateCustomUserLastNameForm, updateCustomUserEmailForm, updateCustomUserProfilePictureForm
 from django.contrib import messages
 
@@ -8,12 +9,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
 
-from .models import Event,Ticket
+from .models import Event,Ticket,CustomUser
 
 from.functions import mostPopular
 
 #pentru mail
 from django.core.mail import send_mail
+
+
+from django.conf import settings
+
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 # Create your views here.
 
@@ -173,7 +181,7 @@ def updateUserProfilePicture(request):
     form = updateCustomUserProfilePictureForm(instance=user)
     if request.method == 'POST':
         form = updateCustomUserProfilePictureForm(request.POST, request.FILES, instance=user)
-        if form.save():
+        if form.is_valid():
             form.save()
             return redirect('my_account')
         
@@ -187,21 +195,53 @@ def EventPage(request, primary_key):
     event = Event.objects.get(id = primary_key)
     user = request.user
 
+
+    #EarlyBird ticket
+    EarlyBird_product_id = 'prod_SSgQz884h3IWoO'
+    EarlyBird_product = stripe.Product.retrieve(EarlyBird_product_id)
+    EarlyBird_prices = stripe.Price.list(product=EarlyBird_product_id)
+    EarlyBird_price = EarlyBird_prices.data[0]
+    EarlyBird_price_final = EarlyBird_price.unit_amount / 100.0
+
+    #General Entry ticket
+    GeneralEntry_product_id = 'prod_SSgR4tYlHkRaRk'
+    GeneralEntry_product = stripe.Product.retrieve(GeneralEntry_product_id)
+    GeneralEntry_prices = stripe.Price.list(product=GeneralEntry_product_id)
+    GeneralEntry_price = GeneralEntry_prices.data[0]
+    GeneralEntry_price_final = GeneralEntry_price.unit_amount / 100.0
+
+    #VIP ticket
+    VIP_product_id = 'prod_SSgRGeyFf7CAsv'
+    VIP_product = stripe.Product.retrieve(VIP_product_id)
+    VIP_prices = stripe.Price.list(product=VIP_product_id)
+    VIP_price = VIP_prices.data[0]
+    VIP_price_final = VIP_price.unit_amount / 100.0
+
+
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('log_in')
+        
+        EarlyBird_price_id = request.POST.get('EarlyBird_price_id')
+        EarlyBird_quantity = request.POST.get('EarlyBird_quantity')
+        GeneralEntry_price_id = request.POST.get('GeneralEntry_price_id')
+        GeneralEntry_quantity = request.POST.get('GeneralEntry_quantity')
+        VIP_price_id = request.POST.get('VIP_price_id')
+        VIP_quantity = request.POST.get('VIP_quantity')
 
         try:
-            earlybird_cat = int(request.POST.get('earlybird_number', 0))
+            earlybird_cat = int(request.POST.get('EarlyBird_quantity', 0))
         except ValueError:
             earlybird_cat = 0
 
         try:   
-            general_entry_cat = int(request.POST.get('general_entry_number', 0))
+            general_entry_cat = int(request.POST.get('GeneralEntry_quantity', 0))
         except ValueError:
             general_entry_cat = 0
             
 
         try:
-            vip_cat = int(request.POST.get('vip_number', 0))
+            vip_cat = int(request.POST.get('VIP_quantity', 0))
         except ValueError:
             vip_cat = 0
 
@@ -215,7 +255,7 @@ def EventPage(request, primary_key):
                 ticket = Ticket.objects.create(
                     event = event,
                     owner = user,
-                    price = 100,
+                    price = EarlyBird_price_final,
                     category = 'Earlybird'
                 )
 
@@ -224,7 +264,7 @@ def EventPage(request, primary_key):
                 ticket = Ticket.objects.create(
                     event = event,
                     owner = user,
-                    price = 140,
+                    price = GeneralEntry_price_final,
                     category = 'General entry'
                 )
 
@@ -233,11 +273,59 @@ def EventPage(request, primary_key):
                 ticket = Ticket.objects.create(
                     event = event,
                     owner = user,
-                    price = 270,
+                    price = VIP_price_final,
                     category = 'VIP'
                 )
 
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price': EarlyBird_price_id,
+                    'quantity': EarlyBird_quantity,
+                },
+                {
+                    'price': GeneralEntry_price_id,
+                    'quantity': GeneralEntry_quantity,
+                },
+                {
+                    'price': VIP_price_id,
+                    'quantity': VIP_quantity,
+                }
+            ],
+            payment_method_types=['card'],
+            mode = 'payment',
+            customer_creation='always',
+            success_url=f'{settings.BASE_URL}{'succesPayment/'}',
+            cancel_url=f'{settings.BASE_URL}{'cancelPayment/'}',
+        )
+        return redirect(checkout_session.url, code=303)
+    
+    
+
+
     context = {
-        'eventVariable': event
+        'eventVariable': event,
+        'EarlyBird_product': EarlyBird_product,
+        'EarlyBird_price': EarlyBird_price,
+        'EarlyBird_price_final': EarlyBird_price_final,
+        'GeneralEntry_product': GeneralEntry_product,
+        'GeneralEntry_price': GeneralEntry_price,
+        'GeneralEntry_price_final': GeneralEntry_price_final,
+        'VIP_product': VIP_product,
+        'VIP_price': VIP_price,
+        'VIP_price_final': VIP_price_final
     }
     return render(request, 'vanzareBilete/event.html', context)
+
+def succesPayment(request):
+
+    context = {}
+    return render(request, 'vanzareBilete/succesPayment.html', context)
+
+def cancelPayment(request):
+
+    context = {}
+    return render(request, 'vanzareBilete/cancelPayment.html', context)
+
+
+        

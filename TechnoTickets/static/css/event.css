@@ -13,11 +13,6 @@
     object-position: bottom left;
 }
 
-.poster-container img::before{
-    background-color: rgba(255, 208, 0, 0.6);
-    mix-blend-mode: multiply;
-}
-
 .content-container{
     max-width: 1400px;
     height: auto;
@@ -244,6 +239,15 @@
 
 .red-theme{
     background-color: rgba(255, 0, 0, 0.6);
+}
+
+.blue-theme{
+    background-color: rgb(93, 140, 249, 0.7);
+}
+
+.purple-theme{
+    background-color: rgb(163, 56, 163);
+    color: white;
 }
 
 .default-theme{
