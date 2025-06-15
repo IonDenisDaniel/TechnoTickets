@@ -2,7 +2,8 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+import pathlib
+from dotenv import load_dotenv
 
 def main():
     """Run administrative tasks."""
@@ -19,4 +20,7 @@ def main():
 
 
 if __name__ == '__main__':
+    CURENT_DIR = pathlib.Path(__file__).resolve().parent
+    ENV_FILE_PATH = CURENT_DIR / ".env"
+    load_dotenv(dotenv_path=str(ENV_FILE_PATH))
     main()

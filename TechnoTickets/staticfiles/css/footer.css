@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+footer{
+    margin-top: 100px;
+    width: 100%;
+    background-color: rgb(19, 19, 19,0.5);
+    height: 200px;
+}
+
+.connect_container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 40px;
+    text-align: center;
+}
+
+.connect_container p{
+    font-size: 34px;
+}
+
+.author_reserved_container{
+    display: flex;
+    justify-content: center;
+    margin: 40px 0px auto ;
+}
+
+.author_reserved_container p{
+    font-size: 18px;
+}
+
+.icons_container i{
+    padding-top: 5px;
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+.author_reserved_container p{
+    margin-left: 5px;
+}
+
+a i{
+    color: black;
+}

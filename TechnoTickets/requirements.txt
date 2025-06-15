@@ -1,0 +1,13 @@
+django
+gunicorn
+requests
+python-dotenv>=1.1.0
+psycopg2-binary
+django-storages
+boto3
+python-dotenv
+whitenoise>=6.0
+stripe
+Pillow
+django-storages
+azure-storage-blob

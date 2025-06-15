@@ -1,0 +1,120 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-family: 'Instrument Serif';
+}
+
+hr{
+    margin-top: 10px;
+    opacity: 50%;
+}
+
+.navBar_container{
+    max-width: 1000px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 26px;
+    padding: 0 40px;
+}
+
+nav ul li a{
+    color: black;
+}
+
+nav ul li a:hover{
+    text-decoration: underline;
+    text-underline-offset: 7px;
+    text-decoration-color: rgba(0, 0, 0, 0.3);
+}
+
+.checkBtn{
+    font-size: 30px;
+    color: black;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: none;
+}
+
+#check{
+    display: none;
+}
+
+.out{
+    display: block;
+}
+
+.in{
+    display: none;
+}
+
+@media (max-width: 1019px){
+
+    .out{
+        display: none;
+    }
+
+    .in{
+        display: block;
+    }
+
+    .navBar_container_in{
+       margin: 15px 40px;
+    }
+}
+
+@media (max-width: 627px){
+    .navBar_container_in{
+        margin:  10px 40px;
+    }
+
+    .navBar_container_in ul{
+        padding: 0px;
+    }
+
+    .navBar_container img{
+        width: 200px; 
+     }
+}
+
+@media (max-width: 570px){
+    .checkBtn{
+        display: block;
+        display: flex;
+        align-items: center;
+        padding-top: 25px;
+    }
+
+    .navBar_container_in ul{
+        display: none;
+        padding-right: 0px;
+    }
+
+    .navBar_container img{
+       width: 170px; 
+    }
+
+    .navBar_container nav ul{
+        display: block;
+        padding-left: 5px;
+    }
+}
+
+@media (min-width: 1400px){
+    .navBar_container{
+        max-width: 1200px;
+    }
+}

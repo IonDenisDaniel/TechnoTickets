@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techno-tickets-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: techno-tickets-deployment
+  template:
+    metadata:
+      labels:
+        app: techno-tickets-deployment
+    spec:
+      containers:
+        - name: techno-tickets
+          image: djangoregistry.azurecr.io/techno-tickets:latest
+          envFrom:
+            - secretRef:
+                name: techno-tickets-prod-env
+          env:
+            - name: PORT
+              value: "8182"
+          ports:
+            - containerPort: 8182
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"  
+      imagePullSecrets:
+        - name: acr-secret
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: techno-tickets-service
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8182 #trebuie sa fie la fel cu value lui PORT din env
+  selector: 
+    app: techno-tickets-deployment
+

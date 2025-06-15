@@ -1,0 +1,32 @@
+services:
+  web:
+    depends_on:
+      - postgres_db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: techno-tickets:v1
+    environment:
+      - PORT=8020
+      - GUNICORN_TIMEOUT=120
+      - GUNICORN_WORKERS=3
+    env_file:
+      - .env
+    ports:
+      - "8001:8020"
+    command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
+  postgres_db:
+    restart: always
+    image: postgres
+    command: -p 5434
+    env_file:
+      - .env
+    expose:
+      - 5434
+    ports:
+      - "5434:5434"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:

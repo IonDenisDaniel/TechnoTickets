@@ -1,0 +1,41 @@
+.video-container {
+    position: relative;
+    height: 60vh; 
+    width: 100%;
+    overflow: hidden;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.title-container{
+    margin-top: 40px;
+}
+
+.video-container p{
+    padding: 20vh 22%;
+    font-family: 'Grechen Fuemen';
+    font-size: 5vw;
+    color: white;
+    transform: rotate(-5deg);
+}
+
+@media(max-width: 1300px){
+    .video-container {
+        height: 50vh; 
+    }
+}

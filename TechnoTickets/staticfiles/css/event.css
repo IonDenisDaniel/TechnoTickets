@@ -1,0 +1,255 @@
+.carusel-container{
+    height: 50vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: relative;
+    z-index: 1;
+}
+
+.poster-container img{
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom left;
+}
+
+.content-container{
+    max-width: 1400px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.event-title-section{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin-top: -380px;
+}
+
+.event-title-section .poster-card-container{
+    width: 400px;
+    height: 600px;
+    padding: 15px 15px 0px 15px;
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    border-radius: 7px;
+    position: relative;
+    background-color: white;
+    z-index: 100;
+}
+
+.event-title-section .poster-card-container img{
+    height: 80%;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 7px;
+    margin-bottom: 30px;
+}
+
+.event-title-section .poster-card-container .details-group{
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.event-title-section .poster-card-container .details-group p{
+    font-size: 18px;
+}
+
+.event-title-section .poster-card-container .details-group a{
+    font-size: 18px;
+    text-decoration: none;
+    text-decoration: underline;
+    color: black;
+}
+
+.event-title-section .poster-card-container .details-group i{
+    font-size: 22px;
+}
+
+.title3-card{
+    padding-top: 45%;
+}
+
+.title3-card .title3-card-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.title3-card .title3-card-container .title3-container{
+    text-decoration: none;
+    display: inline-block;
+    padding-left: 20%;
+    font-size: 60px;
+}
+
+.title3-card .title3-card-container .social-container{
+    display: flex;
+    justify-content: end;
+    font-size: 40px;
+}
+
+.title3-card .title3-card-container .social-container .social-group{
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.title3-card .title3-card-container .social-container .social-group i{
+    margin: 0px 10px;
+}
+
+.about-section, .tickets-section, .location-section{
+    border-bottom: 1px solid rgb(0, 0, 0, 0.3);
+}
+
+
+.about-section h2{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    display: inline-block;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 70px 0px 60px 0px;
+    padding: 0px 5vw;
+    font-size: 48px;
+    font-weight: 500;
+}
+
+
+.about-section .indent{
+    text-indent: 20px;
+    margin-bottom: 40px;
+}
+
+.about-section p{
+    padding: 0px 5vw;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.tickets-section h2{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    display: inline-block;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 70px 0px 60px 0px;
+    padding: 0px 5vw;
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.tickets-section p{
+    padding: 0px 5vw;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.tickets-section .tickets-group .details-group{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    padding: 0vw 1vw;
+    margin-bottom: 40px;
+}
+
+.tickets-section .tickets-group .details-group input{
+    width: 50px;
+}
+
+.tickets-section .tickets-group .details-group p{
+    margin-bottom: 0px;
+}
+
+.tickets-section .tickets-group .details-group .small{
+    font-size: 15px;
+}
+
+.tickets-section .tickets-group-total {
+    padding-top: 40px;
+} 
+
+.tickets-section .tickets-group-total .details-group-total {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+} 
+
+.tickets-section .tickets-group-total .details-group-total .details-group-info-total p{
+    display: inline-block;
+    padding: 10px 30px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    background-color: rgb(66, 153, 99);
+    color: white;
+    border-radius: 10px;
+} 
+
+.tickets-section .tickets-group-total .details-group-total .details-group-info-total {
+    display: flex;
+    justify-content: start;
+}
+
+.tickets-section .tickets-group-total .details-group-total .details-group-price-total p{
+    display: flex;
+    justify-content: start;
+    padding: 10px 90px;
+}
+
+.tickets-section .tickets-group-total .details-group-total .details-group-total-submit{
+    padding-left: 60px;
+}
+
+.tickets-section .tickets-group-total .details-group-total .details-group-total-submit input{
+    background-color: rgb(66, 153, 99);
+    color: white;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.tickets-section .tickets-group .details-group .details-group-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.location-section h2{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    display: inline-block;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 70px 0px 60px 0px;
+    padding: 0px 5vw;
+    font-size: 48px;
+    font-weight: 500;
+}
+
+#map{
+    margin: 20px auto;
+    width: 1000px;
+    height: 600px;
+}
+
+#lan, #lon{
+    display: none;
+}
+
+
+.theme-yellow{
+    background-color: rgba(255, 208, 0, 0.6);
+}
+
+.red-theme{
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.blue-theme{
+    background-color: rgb(93, 140, 249, 0.7);
+}
+
+.purple-theme{
+    background-color: rgb(163, 56, 163);
+    color: white;
+}
+
+.default-theme{
+    background-color: grey;
+}

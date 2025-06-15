@@ -295,8 +295,8 @@ def EventPage(request, primary_key):
             payment_method_types=['card'],
             mode = 'payment',
             customer_creation='always',
-            success_url=f'{settings.BASE_URL}{'succesPayment/'}',
-            cancel_url=f'{settings.BASE_URL}{'cancelPayment/'}',
+            success_url=f"{settings.BASE_URL}succesPayment/",
+            cancel_url=f"{settings.BASE_URL}cancelPayment/",
         )
         return redirect(checkout_session.url, code=303)
     
