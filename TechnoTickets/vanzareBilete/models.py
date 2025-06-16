@@ -73,3 +73,26 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"Bilet: {self.id} pentru eveniment: {self.event} - owner: {self.owner}"
+
+class QRCode(models.Model):
+
+    id = models.UUIDField(primary_key=True, default = uuid.uuid4, editable=False)
+    token = models.CharField(max_length=64, unique=True)
+    is_used = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.token
+
+class QRScan(models.Model):
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    qr = models.ForeignKey(QRCode, on_delete=models.CASCADE)
+    scanned_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ('user', 'qr')
+
+    def __str__(self):
+        return f"{self.user.nume} {self.user.prenume}: {self.qr.token}"

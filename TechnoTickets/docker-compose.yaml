@@ -11,7 +11,7 @@ services:
       - GUNICORN_TIMEOUT=120
       - GUNICORN_WORKERS=3
     env_file:
-      - .env
+      - .env.prod
     ports:
       - "8001:8020"
     command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
@@ -20,7 +20,7 @@ services:
     image: postgres
     command: -p 5434
     env_file:
-      - .env
+      - .env.prod
     expose:
       - 5434
     ports:

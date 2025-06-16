@@ -11,3 +11,4 @@ stripe
 Pillow
 django-storages
 azure-storage-blob
+qrcode[pil]

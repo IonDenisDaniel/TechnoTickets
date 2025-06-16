@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
 
-from .models import Event,Ticket,CustomUser
+from .models import Event,Ticket,CustomUser, QRCode, QRScan
 
 from.functions import mostPopular
 
@@ -21,6 +21,11 @@ from django.conf import settings
 
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+import json
+from django.http import JsonResponse, HttpResponseBadRequest
+from django.views.decorators.http import require_POST
+from django.db import IntegrityError
 
 
 # Create your views here.
@@ -328,4 +333,35 @@ def cancelPayment(request):
     return render(request, 'vanzareBilete/cancelPayment.html', context)
 
 
-        
+@login_required    
+def picnicHuntScanPage(request):
+
+    return render(request, 'vanzareBilete/picnic_scan.html')
+
+
+@login_required
+@require_POST
+def apiPicnicHuntScanQR(request):
+    data = json.loads(request.body.decode('utf-8'))
+    token = data.get('token')
+
+    if not token:
+        return HttpResponseBadRequest('Lipsa token')
+
+    try:
+        qr = QRCode.objects.get(token=token)
+    except QRCode.DoesNotExist:
+        return JsonResponse({'error: token invalid'}, status = 400)
+
+    try:
+        QRScan.objects.create(user=request.user, qr=qr)
+    except IntegrityError:
+        return JsonResponse({'error': 'Ai scanat deja acest qr code.'}, status=200)
+    
+    total = QRScan.objects.filter(user=request.user, is_used=False, qr__is_used=False).count()
+
+    return JsonResponse({
+        'Message': "Scanare realizata cu succes", 
+        'Total_scanari': total, 
+        'Recompense': { '1': 1, '3': 2, '5': 3}
+    })

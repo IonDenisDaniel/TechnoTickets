@@ -1,0 +1,58 @@
+{% extends "vanzareBilete/main.html" %}
+{% load static %}
+{% block content %}
+    <h1>Picnic Hunt - Scan QR</h1>
+    <div id="reader" style="width:500px;"></div>
+    <div id="status"></div>
+
+<script>
+    const statusElement = document.getElementById('status')
+
+    function scanSucces(decodeText){
+        let token;
+        try{
+            token = new URL(decodeText).searchParams.get('code')||decodeText;
+        }catch(e){
+            token = decodeText;
+        }
+
+        statusElement.innerText = `Scanat: ${token}.Procesare date...`;
+
+        fetch("{% url 'api_picnic_hunt_scan_qr' %}",{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({token})
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.error){
+                statusElement.innerText = `Eroare: ${data.error}`;
+            }else{
+                statusElement.innerText = `${data.Message}Ai scanat deja ${data.Total_scanari} coduri.`;
+            }
+        })
+        .catch(error =>{
+            statusElement.innerText = `Request failed: ${error}`;
+        });
+    }
+
+    function initScanner(){
+        const html5QrScanner = new Html5Qrcode("reader");
+        html5QrScanner.start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: 250 },
+            (decodeText) => scanSucces(decodeText),
+            (errorMessage) => {
+
+            }
+        ).catch(error => {
+            statusElement.innerText = `Initialize camera error: ${error}`;
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', initScanner);
+</script>
+{% endblock %}

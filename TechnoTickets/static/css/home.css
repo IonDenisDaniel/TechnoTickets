@@ -39,3 +39,68 @@
         height: 50vh; 
     }
 }
+
+.picnic-hunt-container{
+    background-color: #CF8F90;
+    margin-top: 30px;
+}
+
+.picnic-hunt-container .poster-picnic-hunt-container{
+    max-width: 1400px;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+}
+
+.picnic-hunt-container .poster-picnic-hunt-container img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.title-first-part{
+    font-size: 70px;
+    font-family: 'Grechen Fuemen';
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.title-second-part{
+    font-family: 'Grechen Fuemen';
+    font-size: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.picnic-hunt-description{
+    font-family: 'Roboto';
+    max-width: 1400px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.picnic-hunt-button{
+    max-width: 1400px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.picnic-hunt-button a{
+    text-decoration: none;
+    padding: 20px 80px;
+    font-size: 28px;
+    color: white;
+    background-color: #CF8F90;
+    border-radius: 30px;    
+}

@@ -16,5 +16,7 @@ urlpatterns = [
     path('updateUserProfilePicture/', views.updateUserProfilePicture, name = 'update_user_profile_picture'),
     path('eventPage/<str:primary_key>/', views.EventPage, name = 'event_page'),
     path('succesPayment/', views.succesPayment, name = 'succes_payment'),
-    path('cancelPayment/', views.cancelPayment, name = 'cancel_payment')
+    path('cancelPayment/', views.cancelPayment, name = 'cancel_payment'),
+    path('scan/', views.picnicHuntScanPage, name = "picnic_hunt_scan_page"),
+    path('api/scan/', views.apiPicnicHuntScanQR, name = "api_picnic_hunt_scan_qr")
 ]
